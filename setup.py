@@ -1,7 +1,6 @@
 import os
-import itertools
 import platform
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 
@@ -20,7 +19,6 @@ setup(
       license='BSD',
       author='Austin Ellis',
       author_email='austinellis@gmail.com',
-      packages=find_packages(exclude=['tests']),
       py_modules=['mandrill_mock'],
       install_requires=install_requires,
       scripts=[],
