@@ -1,11 +1,16 @@
 from mandrill import Mandrill, ROOT
-
+import os, logging
 
 class MandrillMock(Mandrill):
     def __init__(self, apikey=None, debug=True): #default debug to true
         if apikey is None:
             apikey = ''
         Mandrill.__init__(self, apikey, debug)
+        
+        if os.environ.get('ENVIRONMENT') == 'test':
+            self.level = logging.DEBUG
+        else:
+            self.level = logging.INFO
 
 
     def call(self, url, params=None):
