@@ -14,15 +14,17 @@ class MandrillMock(Mandrill):
 
 
     def call(self, url, params=None):
-        '''skipp the api call!!! we don't want to send emails from the intern's computer right? '''
-        result = []
-
+        '''skip the api call so tests don\'t fire emails'''
+        
         self.log('NO MANDRILL API KEY, would have sent:\nPOST to %s%s.json: %s' % (ROOT, url, params))
 
         if 'message' in params and 'to' in params['message']:
+            result = []
             for email in params['message']['to']:
                 result.append({u'email': email['email'], u'_id': u'', u'status': u'mocked'})
-        return result
+            return result
+        else:
+            return {}
 
 
     def __repr__(self):
